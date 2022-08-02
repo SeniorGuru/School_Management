@@ -8,7 +8,7 @@ namespace School.Controllers
     {
         private readonly SchoolDbContext _context;
         private readonly IWebHostEnvironment env;
-        public User[] teachers;
+        public List<User> teachers = new List<User>();
         public TeacherController(SchoolDbContext context, IWebHostEnvironment env)
         {
             _context = context;
@@ -17,16 +17,25 @@ namespace School.Controllers
 
         public IActionResult Edit()
         {
-           
-            return View(_context.Users.OrderBy(item => item.FirstName).ToList());
+            foreach (var item in _context.Users)
+            {
+                if (item.Title == "teacher")
+                {
+                    teachers.Add(item);
+                }
+            }
+            if (teachers != null)
+                return View(teachers.OrderBy(item => item.FirstName).ToList());
+            else
+                return View();
         }
-        public IActionResult Index()
+        public IActionResult Detail(string Email)
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateTeacher([FromBody] User std)
+        public ActionResult Create([FromBody] User std)
         {
             std.ClientId = _context.Users.Count() + 1;
             std.Title = "teacher";

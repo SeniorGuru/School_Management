@@ -15,7 +15,6 @@ namespace CRUDOperationsDemo
         }
 
         public DbSet<User> Users { get; set; }
-
         public DbSet<Subject> subjects { get; set; }
     }
 }

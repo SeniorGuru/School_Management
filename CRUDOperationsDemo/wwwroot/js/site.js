@@ -52,6 +52,9 @@ $(document).ready(function () {
                 dataType: 'json'
             });
         }
+        else {
+            alert("Input Error");
+        }
     })
 
     $("#btnSubjetCreate").click(function () {
@@ -78,21 +81,24 @@ $(document).ready(function () {
                 dataType: 'json'
             });
         }
+        else {
+            alert("Input Error");
+        }
     })
    
     $("#btnCreateTeacher").click(function () {
+
         const student = {
-            "FirstName": $("#tFirst").val(),
-            "LastName": $("#tLast").val(),
+            "FirstName": $("#tFirstName").val(),
+            "LastName": $("#tLastName").val(),
             "Email": $("#tEmail").val(),
             "Title": "teacher",
         };
 
-
         if (student.FirstName && student.LastName && student.Email) {
             $.ajax({
                 type: 'POST',
-                url: '/Student/CreateStudent',
+                url: '/Teacher/Create',
                 data: JSON.stringify(student),
                 success: function (data) {
                     window.location.reload();
@@ -105,38 +111,41 @@ $(document).ready(function () {
                 dataType: 'json'
             });
         }
-    })
-
-    $("#btnLogin").click(function () {
-        const user = {
-            "Email": $("#email").val(),
-            "Password": $("#password").val(),
-        }
-
-        if (user.Email && user.Password) {
-            $.ajax({
-                type: 'POST',
-                url: '/Login/Login',
-                data: JSON.stringify(user),
-                success: function (data) {
-                    if (data == 1) {
-                        window.location.href = "/Student/Detail"
-                    }
-                    if (data == 2) {
-                        window.location.href = "/Teacher/Index"
-                    }
-                    if (data == 3) {
-                        window.location.href = "/Admin/Index"
-                    }
-                },
-                error: function (err) {
-                    alert("Data Error");
-                },
-                contentType: "application/json",
-                dataType: 'json'
-            });
+        else {
+            alert("Input Error");
         }
     })
+
+    //$("#btnLogin").click(function () {
+    //    const user = {
+    //        "Email": $("#email").val(),
+    //        "Password": $("#password").val(),
+    //    }
+
+    //    if (user.Email && user.Password) {
+    //        $.ajax({
+    //            type: 'POST',
+    //            url: '/Login/Login',
+    //            data: JSON.stringify(user),
+    //            success: function (data) {
+    //                if (data == 1) {
+    //                    window.location.href = "/Student/Detail"
+    //                }
+    //                if (data == 2) {
+    //                    window.location.href = "/Teacher/Index"
+    //                }
+    //                if (data == 3) {
+    //                    window.location.href = "/Admin/Index"
+    //                }
+    //            },
+    //            error: function (err) {
+    //                alert("Data Error");
+    //            },
+    //            contentType: "application/json",
+    //            dataType: 'json'
+    //        });
+    //    }
+    //})
 
     
 
@@ -176,7 +185,7 @@ $(document).ready(function () {
     })
 
     $("#imgTeacher").click(function () {
-        window.location.href = "/Teacher/Index"
+        window.location.href = "/Teacher/Edit"
     })
 
     $("#imgSubject").click(function () {
@@ -184,7 +193,7 @@ $(document).ready(function () {
     })
 
     $("#imgInstruction").click(function () {
-
+        window.location.href = ""
     })
 
     $("#imgStudent").click(function () {
@@ -192,10 +201,23 @@ $(document).ready(function () {
     })
 
     $("#imgNewStudent").click(function () {
-
+        window.location.href = "/Student/Index";
     })
 
     $("#imgClass").click(function () {
-
+        window.location.href = "/Enrollment/Index";
     })
+
+    $("#recordLog").click(function () {
+        window.location.href = "/RecordLog/Index";
+    })
+
+    $("#studentAccess").click(function () {
+        window.location.href = "/Student/Index";
+    })
+
+    $("#newSemester").click(function () {
+        window.location.href = "/Semester/Create";
+    })
+
 })

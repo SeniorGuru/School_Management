@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CRUDOperationsDemo.Models;
 using CRUDOperationsDemo;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace School.Controllers
 {
@@ -20,23 +22,29 @@ namespace School.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Login([FromBody]User std)
+        public async Task<IActionResult> Login(User std)
         {
             int type = 0;
             foreach(var item in _context.Users)
             {
                 if (item.Email == std.Email)
                 {
-                    if(item.Title == "student")
-                        type = 1;
+                    if (item.Title == "student")
+                    {
+                        return RedirectToAction("Detail", "Student", std.Email);
+                    }
                     if (item.Title == "teacher")
-                        type = 2;
+                    {
+                        return RedirectToAction("Detail", "Teacher", std.Email);
+                    }
                     if (item.Title == "admin")
+                    {
                         type = 3;
+                        return RedirectToAction("Index", "Admin");
+                    }
                 }
             }
-            return Json(type);
+            return View("Index");
         }
     }
 }

@@ -18,7 +18,7 @@ namespace CRUDOperationsDemo.Controllers
             return View(_context.Users.OrderBy(item => item.FirstName).ToList());
         }
 
-        public IActionResult Detail()
+        public IActionResult Detail(string Email)
         {
             return View();
         }
@@ -26,6 +26,12 @@ namespace CRUDOperationsDemo.Controllers
         {
             return View();
         }
+
+        public IActionResult List()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult CreateStudent([FromBody]User std)
         {
