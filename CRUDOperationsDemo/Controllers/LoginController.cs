@@ -22,24 +22,24 @@ namespace School.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Login(User std)
         {
-            int type = 0;
-            foreach(var item in _context.Users)
+            TempData["email"] = std.Email;
+            foreach (var item in _context.users)
             {
                 if (item.Email == std.Email)
                 {
                     if (item.Title == "student")
                     {
-                        return RedirectToAction("Detail", "Student", std.Email);
+                        return RedirectToAction("Detail", "Student");
                     }
                     if (item.Title == "teacher")
                     {
-                        return RedirectToAction("Detail", "Teacher", std.Email);
+                        return RedirectToAction("Detail", "Teacher");
                     }
                     if (item.Title == "admin")
                     {
-                        type = 3;
                         return RedirectToAction("Index", "Admin");
                     }
                 }

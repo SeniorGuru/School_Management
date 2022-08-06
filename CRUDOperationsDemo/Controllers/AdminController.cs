@@ -8,5 +8,10 @@ namespace School.Controllers
         {
             return View();
         }
+
+        public IActionResult Access()
+        {
+            return View();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CRUDOperationsDemo.Models;
 using Microsoft.EntityFrameworkCore;
+using School.Models;
 
 namespace CRUDOperationsDemo
 {
@@ -14,7 +15,11 @@ namespace CRUDOperationsDemo
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> users { get; set; }
         public DbSet<Subject> subjects { get; set; }
+        public DbSet<Enrollment> enrolls { get; set; }
+        public DbSet<SemesterTeacherSubject> semesterTeacherSubjects { get; set; }
+        public DbSet<Semester> semesters { get; set; }
+        public DbSet<StudentAbsense> studentAbsenses { get; set; }
     }
-}
+ }

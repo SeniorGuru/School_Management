@@ -16,6 +16,11 @@ namespace CRUDOperationsDemo.Models
         public string Name { get; set; } = string.Empty;
 
         [Required]
+        [Display(Name = "PeriodCount")]
+        [Column(TypeName = "int")]
+        public int PeriodCount { get; set; } = 0;
+
+        [Required]
         [Display(Name = "DateCreated")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MMMM-yyyy}")]

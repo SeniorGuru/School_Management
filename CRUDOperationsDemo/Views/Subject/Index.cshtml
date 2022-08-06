@@ -49,6 +49,7 @@
                                     <div>
                                         @Html.DisplayFor(modelItem => item.Name)
                                     </div>
+                                    <div>@Html.DisplayFor(modelItem => item.PeriodCount)</div>
                                     <i class="fa fa-trash" id="@Html.DisplayFor(modelItem => item.Id)" onclick="onDeleteSubject(this)"  aria-hidden="true"></i>
                                </div>                            
                             }
