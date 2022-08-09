@@ -312,11 +312,11 @@ $(document).ready(function () {
     })
 
     $("#imgSubject").click(function () {
-        window.location.href = "/Subject/index";
+        window.location.href = "/Subject/Index";
     })
 
     $("#imgInstruction").click(function () {
-        window.location.href = ""
+        window.location.href = "/Instructor/Index"
     })
 
     $("#imgNewStudent").click(function () {

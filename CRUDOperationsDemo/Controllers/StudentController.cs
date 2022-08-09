@@ -8,25 +8,35 @@ namespace CRUDOperationsDemo.Controllers
     {
         private readonly SchoolDbContext _context;
         private readonly IWebHostEnvironment env;
+        public List<User> students  = new List<User>();
 
         public int weeks;
         public StudentController(SchoolDbContext context, IWebHostEnvironment env)
         {
             _context = context;
             this.env = env;
+
+            foreach (var item in _context.users)
+            {
+                if (item.Title == "student")
+                {
+                    students.Add(item);
+                }
+            }
         }
+
         public IActionResult Index()
         {
-            return View(_context.users.OrderBy(item => item.FirstName).ToList());
+            return View(students.OrderBy(item => item.FirstName).ToList());
         }
 
         
         [HttpPost]
-       public IActionResult Access(User std)
-       {
+        public IActionResult Access(User std)
+        {
             TempData["email"] = std.Email;
             return RedirectToAction("Detail");
-       }
+        }
 
         public IActionResult Detail()
         {
@@ -115,6 +125,8 @@ namespace CRUDOperationsDemo.Controllers
             std.Title = "student";
             std.DateModified = DateTime.Now;
             std.DateCreated = DateTime.Now;
+
+            students.Add(std);
             _context.users.Add(std);
             _context.SaveChanges();
 
