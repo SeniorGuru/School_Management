@@ -308,7 +308,11 @@ $(document).ready(function () {
     })
 
     $("#imgTeacher").click(function () {
-        window.location.href = "/Teacher/Edit"
+        window.location.href = "/Teacher/Edit";
+    })
+
+    $("#imgStudent").click(function () {
+        window.location.href = "/Student/Index";
     })
 
     $("#imgSubject").click(function () {
@@ -320,7 +324,7 @@ $(document).ready(function () {
     })
 
     $("#imgNewStudent").click(function () {
-        window.location.href = "/Student/Index";
+        window.location.href = "/Student/Register";
     })
 
     $("#imgClass").click(function () {

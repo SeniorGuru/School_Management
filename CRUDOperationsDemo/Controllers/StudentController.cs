@@ -113,6 +113,11 @@ namespace CRUDOperationsDemo.Controllers
             return View();
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         public IActionResult List()
         {
             return View();
