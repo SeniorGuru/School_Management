@@ -18,6 +18,7 @@ namespace School.Controllers
 
             EnrollmentViewModel item = new EnrollmentViewModel();
             item.users = _context.users;
+
             item.subjects = _context.subjects;
             item.enrolls = _context.enrolls;
 
