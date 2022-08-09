@@ -16,7 +16,6 @@ namespace School.Controllers
             _context = context;
             this.env = env;
         }
-
         public IActionResult Index()
         {
             return View();

@@ -99,7 +99,7 @@ function onDeleteEnroll(x) {
 }
 
 $(document).ready(function () {
-    
+
     $("#btnCreate").click(function () {
         const student = {
             "FirstName": $("#stdFirst").val(),
@@ -126,6 +126,10 @@ $(document).ready(function () {
         else {
             alert("Input Error");
         }
+    })
+
+    $("#btnBack").click(function () {
+        window.location.href = "/";
     })
 
     $("#btnCreateNewSemester").click(function () {
@@ -189,18 +193,18 @@ $(document).ready(function () {
    
     $("#btnCreateTeacher").click(function () {
 
-        const student = {
+        const teacher = {
             "FirstName": $("#tFirstName").val(),
             "LastName": $("#tLastName").val(),
             "Email": $("#tEmail").val(),
             "Title": "teacher",
         };
 
-        if (student.FirstName && student.LastName && student.Email) {
+        if (teacher.FirstName && teacher.LastName && teacher.Email) {
             $.ajax({
                 type: 'POST',
                 url: '/Teacher/Create',
-                data: JSON.stringify(student),
+                data: JSON.stringify(teacher),
                 success: function (data) {
                     window.location.reload();
 
@@ -315,10 +319,6 @@ $(document).ready(function () {
         window.location.href = ""
     })
 
-    $("#imgStudent").click(function () {
-        window.location.href = "/Student/Index";
-    })
-
     $("#imgNewStudent").click(function () {
         window.location.href = "/Student/Index";
     })
@@ -332,6 +332,7 @@ $(document).ready(function () {
     })
 
     $("#studentAccess").click(function () {
+
         window.location.href = "/Admin/Access";
     })
 

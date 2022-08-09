@@ -1,8 +1,9 @@
-﻿@*
+﻿@using CRUDOperationsDemo.Models
+@model User
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
+
 <head>
   <title>Attendance</title>
   <meta charset="utf-8">
@@ -13,26 +14,28 @@
 </head>
 <body>
         <div class="container mt-5">
-            <div class="row fs-2">
-                <div class="col-12">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <img src="../images/logo.png" />
+            <form asp-action="Access    " asp-controller="Student">
+                <div class="row fs-2">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="../images/logo.png" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-5">
-                    <div class="d-flex justify-content-end">
-                        <span style="color: red;">Student Name:</span>
+                    <div class="col-5">
+                        <div class="d-flex justify-content-end">
+                            <span style="color: red;">Student Name:</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-7">
-                    <input type="text" />
-                </div>
-                <div class="col-5">
+                    <div class="col-7">
+                        <input type="text" asp-for="Email"/>
+                    </div>
+                    <div class="col-5">
 
+                    </div>
+                    <div class="col-7 mt-3">
+                        <button type="submit">Access Records</button>
+                    </div>
                 </div>
-                <div class="col-7 mt-3">
-                    <button type="button">Access Records</button>
-                </div>
-            </div>
+            </form>
         </div>
 </body>

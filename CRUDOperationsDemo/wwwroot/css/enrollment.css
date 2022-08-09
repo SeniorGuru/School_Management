@@ -9,17 +9,6 @@ input {
     min-width: 400px;
 }
 
-select {
-    outline: 1px solid gray !important;
-    height: 40px;
-    padding: 20px;
-    border-radius: 30px;
-    border: none;
-    font-size: 20px;
-    min-width: 400px;
-}
-
-
 button {
     text-transform : uppercase !important;
     border : none !important;
@@ -53,6 +42,16 @@ button {
     font-size: 25px;
 }
 
-.option {
-    border-radius : 50px;
+
+#eTeacher {
+    border-radius : 30px ;
+    
+}
+
+#eSubject {
+    border-radius : 30px;
+}
+
+#eStudent {
+    border-radius : 30px ;
 }

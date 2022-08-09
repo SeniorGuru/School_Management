@@ -20,6 +20,14 @@ namespace CRUDOperationsDemo.Controllers
             return View(_context.users.OrderBy(item => item.FirstName).ToList());
         }
 
+        
+        [HttpPost]
+       public IActionResult Access(User std)
+       {
+            TempData["email"] = std.Email;
+            return RedirectToAction("Detail");
+       }
+
         public IActionResult Detail()
         {
             string Email = TempData["email"] as string;
@@ -50,36 +58,39 @@ namespace CRUDOperationsDemo.Controllers
 
                     point.Teacher = enroll.Teacher;
                     string subject = enroll.Subject;
-                    int period = _context.subjects.SingleOrDefault(a => a.Name == subject).PeriodCount;
-
-                    point.Allowed = period * weeks * 1;
-                    point.SubjectName = subject;
-
-                    foreach(var item in _context.studentAbsenses)
+                    int period = 0;
+                    if(_context.subjects.SingleOrDefault(a => a.Name == subject).PeriodCount != null)
                     {
-                        if(item.StudentId == studentId)
+                        period = _context.subjects.SingleOrDefault(a => a.Name == subject).PeriodCount;
+
+                        point.Allowed = period * weeks * 1;
+                        point.SubjectName = subject;
+
+                        foreach (var item in _context.studentAbsenses)
                         {
-                            point.StudentAbsenses.Add(item);
-                            switch (item.AbsenseType)
+                            if (item.StudentId == studentId)
                             {
-                                case 1:
-                                    break;
-                                case 2:
-                                    point.Deducated -= 1;
-                                    break;
-                                case 3:
-                                    point.Deducated -= 2;
-                                    break;
-                                case 4:
-                                    point.Deducated -= 2;
-                                    point.Missed++;
-                                    break;
+                                point.StudentAbsenses.Add(item);
+                                switch (item.AbsenseType)
+                                {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        point.Deducated -= 1;
+                                        break;
+                                    case 3:
+                                        point.Deducated -= 2;
+                                        break;
+                                    case 4:
+                                        point.Deducated -= 2;
+                                        point.Missed++;
+                                        break;
+                                }
                             }
                         }
+                        point.Deducated += 2 * point.Allowed;
+                        points.Add(point);
                     }
-
-                    point.Deducated += 2 * point.Allowed;
-                    points.Add(point);
                 }
             }
 

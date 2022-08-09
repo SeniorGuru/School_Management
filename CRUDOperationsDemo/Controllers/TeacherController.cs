@@ -18,7 +18,13 @@ namespace School.Controllers
 
         public IActionResult Edit()
         {
-
+            foreach(var item in _context.users)
+            {
+                if(item.Title == "teacher")
+                {
+                    teachers.Add(item);
+                }
+            }
             if (teachers != null)
                 return View(teachers.OrderBy(item => item.FirstName).ToList());
             else
@@ -76,6 +82,7 @@ namespace School.Controllers
             std.Title = "teacher";
             std.DateModified = DateTime.Now;
             std.DateCreated = DateTime.Now;
+            teachers.Add(std);
             _context.users.Add(std);
             _context.SaveChanges();
 
